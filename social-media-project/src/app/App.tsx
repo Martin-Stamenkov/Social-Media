@@ -1,13 +1,13 @@
 import React from 'react';
 import { NavBar } from 'components/header/header';
-import { SignIn } from 'screens/auth/sign-in/sign-in';
+import { SignUp } from 'screens/auth/sign-up/sign-up';
 
 const App = () => {
   {
     return (
       <div>
         <NavBar />
-        <SignIn />
+        <SignUp />
       </div>
     );
   }

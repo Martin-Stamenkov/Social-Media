@@ -1,29 +1,31 @@
 import React from 'react';
-import IconButton from '@material-ui/core/IconButton';
-import OutlinedInput from '@material-ui/core/OutlinedInput';
-import InputLabel from '@material-ui/core/InputLabel';
-import InputAdornment from '@material-ui/core/InputAdornment';
-import FormHelperText from '@material-ui/core/FormHelperText';
-import Visibility from '@material-ui/icons/Visibility';
-import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import {
-  FormControl,
   Container,
-  Button,
   Typography,
+  FormControl,
+  InputLabel,
+  OutlinedInput,
+  InputAdornment,
+  IconButton,
+  Button,
+  FormHelperText,
   Link,
 } from '@material-ui/core';
-import { useStyles } from 'screens/auth/sign-in/sign-in.styles';
+import Visibility from '@material-ui/icons/Visibility';
+import VisibilityOff from '@material-ui/icons/VisibilityOff';
+import { useStyles } from '../sign-in/sign-in.styles';
 
 interface IState {
+  name: string;
   username: string;
   password: string;
   showPassword: boolean;
 }
 
-export const SignIn = () => {
+export const SignUp = () => {
   const classes = useStyles();
   const [values, setValues] = React.useState<IState>({
+    name: '',
     username: '',
     password: '',
     showPassword: false,
@@ -44,13 +46,24 @@ export const SignIn = () => {
   ) => {
     event.preventDefault();
   };
-
   return (
     <>
       <Container maxWidth="sm" className={classes.root}>
         <div className={classes.title}>
-          <Typography variant="h5">Sign in</Typography>
+          <Typography variant="h5">Sign Up</Typography>
         </div>
+        <FormControl fullWidth variant="outlined">
+          <InputLabel style={{ margin: 10 }} htmlFor="component-outlined">
+            Name
+          </InputLabel>
+          <OutlinedInput
+            id="component-outlined"
+            value={values.name}
+            onChange={handleChange('name')}
+            labelWidth={40}
+            style={{ margin: 10 }}
+          />
+        </FormControl>
         <FormControl fullWidth variant="outlined">
           <InputLabel style={{ margin: 10 }} htmlFor="component-outlined">
             Username
@@ -101,8 +114,8 @@ export const SignIn = () => {
             Submit
           </Button>
           <div className={classes.link}>
-            <FormHelperText>You don`t have an account ?</FormHelperText>
-            <Link variant="body2">Sign Up</Link>
+            <FormHelperText>Already have an account?</FormHelperText>
+            <Link variant="body2">Sign In</Link>
           </div>
         </div>
       </Container>
