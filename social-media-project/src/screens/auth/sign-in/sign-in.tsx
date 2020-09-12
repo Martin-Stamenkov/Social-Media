@@ -6,14 +6,9 @@ import InputAdornment from '@material-ui/core/InputAdornment';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
-import {
-  FormControl,
-  Container,
-  Button,
-  Typography,
-  Link,
-} from '@material-ui/core';
+import { FormControl, Container, Button, Typography } from '@material-ui/core';
 import { useStyles } from 'screens/auth/sign-in/sign-in.styles';
+import { useHistory, Link } from 'react-router-dom';
 
 interface IState {
   username: string;
@@ -23,6 +18,7 @@ interface IState {
 
 export const SignIn = () => {
   const classes = useStyles();
+  const history = useHistory();
   const [values, setValues] = React.useState<IState>({
     username: '',
     password: '',
@@ -101,8 +97,8 @@ export const SignIn = () => {
             Submit
           </Button>
           <div className={classes.link}>
-            <FormHelperText>You don`t have an account ?</FormHelperText>
-            <Link variant="body2">Sign Up</Link>
+            <FormHelperText>You don`t have an account?</FormHelperText>
+            <Link to="/sign-up">Sign Up</Link>
           </div>
         </div>
       </Container>

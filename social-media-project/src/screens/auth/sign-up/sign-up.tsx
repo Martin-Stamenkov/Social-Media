@@ -9,11 +9,11 @@ import {
   IconButton,
   Button,
   FormHelperText,
-  Link,
 } from '@material-ui/core';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import { useStyles } from '../sign-in/sign-in.styles';
+import { Link } from 'react-router-dom';
 
 interface IState {
   name: string;
@@ -115,7 +115,7 @@ export const SignUp = () => {
           </Button>
           <div className={classes.link}>
             <FormHelperText>Already have an account?</FormHelperText>
-            <Link variant="body2">Sign In</Link>
+            <Link to="/sign-in">Sign In</Link>
           </div>
         </div>
       </Container>

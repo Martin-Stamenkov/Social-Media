@@ -22,6 +22,9 @@ export const useStyles = makeStyles((theme: Theme) =>
       marginTop: 10,
       '& a': {
         paddingLeft: 5,
+        color: '#2a2aff',
+        fontSize: 14,
+        textDecoration: 'none',
       },
     },
     button: {
