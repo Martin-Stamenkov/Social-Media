@@ -17,5 +17,17 @@ export const useStyles = makeStyles((theme: Theme) =>
       backgroundColor: '#2d2e38',
       flexGrow: 1,
     },
+    sectionDesktop: {
+      display: 'none',
+      [theme.breakpoints.up('md')]: {
+        display: 'flex',
+      },
+    },
+    sectionMobile: {
+      display: 'flex',
+      [theme.breakpoints.up('md')]: {
+        display: 'none',
+      },
+    },
   })
 );
