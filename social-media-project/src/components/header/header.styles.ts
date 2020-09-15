@@ -2,8 +2,10 @@ import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 
 export const useStyles = makeStyles((theme: Theme) =>
   createStyles({
-    title: {
+    grow: {
       flexGrow: 1,
+    },
+    title: {
       paddingLeft: '1%',
     },
     logo: {
@@ -13,6 +15,7 @@ export const useStyles = makeStyles((theme: Theme) =>
     },
     navbar: {
       backgroundColor: '#2d2e38',
+      flexGrow: 1,
     },
   })
 );

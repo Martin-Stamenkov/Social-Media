@@ -1,4 +1,9 @@
 import {
+  GET_LOGGED_USER_REQUEST,
+  GET_LOGGED_USER_SUCCESS,
+  GET_LOGGED_USER_FAILURE,
+} from 'store/types/userTypes';
+import {
   SIGN_IN_FAILURE,
   SIGN_IN_REQUEST,
   SIGN_IN_SUCCESS,
@@ -11,6 +16,7 @@ const authState: any = {
   error: '',
   loading: true,
   user: null,
+  me: null,
 };
 
 export const authReducer = (
@@ -47,6 +53,23 @@ export const authReducer = (
         loading: false,
       };
     case SIGN_IN_FAILURE:
+      return {
+        ...state,
+        error: action.payload,
+        loading: false,
+      };
+    case GET_LOGGED_USER_REQUEST:
+      return {
+        ...state,
+        loading: true,
+      };
+    case GET_LOGGED_USER_SUCCESS:
+      return {
+        ...state,
+        me: action.payload,
+        loading: false,
+      };
+    case GET_LOGGED_USER_FAILURE:
       return {
         ...state,
         error: action.payload,

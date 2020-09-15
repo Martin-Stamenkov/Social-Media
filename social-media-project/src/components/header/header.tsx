@@ -7,13 +7,15 @@ import { useHistory, Link } from 'react-router-dom';
 import { useStyles } from './header.styles';
 import logo from 'assets/share.png';
 import { Grid } from '@material-ui/core';
+import { SearchField } from 'components/search-field/search-field';
 
 export const NavBar = () => {
   const classes = useStyles();
   const history = useHistory();
+  const isAuth = true;
 
   return (
-    <>
+    <div className={classes.grow}>
       <AppBar className={classes.navbar} position="static">
         <Toolbar>
           <Link to="/home">
@@ -22,17 +24,27 @@ export const NavBar = () => {
           <Typography variant="h6" className={classes.title}>
             Social Media
           </Typography>
+          {isAuth ? <SearchField /> : ''}
+          <div className={classes.grow} />
           <Grid alignItems="center">
-            <Button onClick={() => history.push('sign-up')} color="inherit">
-              Sign Up
-            </Button>{' '}
-            |{' '}
-            <Button onClick={() => history.push('sign-in')} color="inherit">
-              Sign In
-            </Button>
+            {isAuth ? (
+              <Button onClick={() => history.push('sign-in')} color="inherit">
+                Log Out
+              </Button>
+            ) : (
+              <>
+                <Button onClick={() => history.push('sign-up')} color="inherit">
+                  Sign Up
+                </Button>
+                |
+                <Button onClick={() => history.push('sign-in')} color="inherit">
+                  Sign In
+                </Button>
+              </>
+            )}
           </Grid>
         </Toolbar>
       </AppBar>
-    </>
+    </div>
   );
 };

@@ -47,7 +47,7 @@ export const SignIn = () => {
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     dispatch(signIn(values));
-    history.push('/');
+    // history.push('/');
   };
 
   return (

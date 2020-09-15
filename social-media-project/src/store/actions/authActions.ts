@@ -7,6 +7,11 @@ import {
   SIGN_UP_SUCCESS,
 } from '../types/authTypes';
 import { Requests, signInData, signUpData } from '../../api/requests';
+import {
+  GET_LOGGED_USER_REQUEST,
+  GET_LOGGED_USER_SUCCESS,
+  GET_LOGGED_USER_FAILURE,
+} from 'store/types/userTypes';
 
 export const signUpRequest = () => {
   return {
@@ -61,11 +66,48 @@ export const signIn = (data: signInData) => {
   return (dispatch: any) => {
     dispatch(signInRequest());
     Requests.signInUser(data)
-      .then((response) => dispatch(signInSuccess(response)))
+      .then((response) =>
+        dispatch(
+          signInSuccess(response),
+          localStorage.setItem('user', response.data.id)
+        )
+      )
       .catch((error) => {
         console.log(error);
         if (error.message) {
           dispatch(signInFailure(error));
+        } else {
+          console.log(error);
+        }
+      });
+  };
+};
+export const getMeRequest = () => {
+  return {
+    type: GET_LOGGED_USER_REQUEST,
+  };
+};
+export const getMeSuccess = (me: any) => {
+  return {
+    type: GET_LOGGED_USER_SUCCESS,
+    payload: me,
+  };
+};
+export const getMeFailure = (error: string) => {
+  return {
+    type: GET_LOGGED_USER_FAILURE,
+    payload: error,
+  };
+};
+export const getMe = () => {
+  return (dispatch: any) => {
+    dispatch(getMeRequest());
+    Requests.getMe()
+      .then((response) => dispatch(getMeSuccess(response)))
+      .catch((error) => {
+        console.log(error);
+        if (error.message) {
+          dispatch(getMeFailure(error));
         } else {
           console.log(error);
         }
