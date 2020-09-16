@@ -8,18 +8,18 @@ import { useStyles } from './header.styles';
 import logo from 'assets/share.png';
 import {
   Avatar,
+  Box,
   Divider,
   Grid,
   IconButton,
   Menu,
   MenuItem,
 } from '@material-ui/core';
-import { SearchField } from 'components/search-field/search-field';
-import { AccountCircle } from '@material-ui/icons';
+import { SearchField } from 'components/generic/search-field/search-field';
 import avatar from 'assets/avatar.png';
-import MailIcon from '@material-ui/icons/Mail';
-import NotificationsIcon from '@material-ui/icons/Notifications';
+
 import MoreIcon from '@material-ui/icons/MoreVert';
+import { Hidden } from '@material-ui/core';
 
 export const NavBar = () => {
   const classes = useStyles();
@@ -71,10 +71,6 @@ export const NavBar = () => {
     </Menu>
   );
 
-  const handleProfileMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorEl(event.currentTarget);
-  };
-
   const mobileMenuId = 'primary-search-account-menu-mobile';
   const renderMobileMenu = (
     <Menu
@@ -97,7 +93,6 @@ export const NavBar = () => {
       </IconButton>
       <span>Martin Stamenkov</span>
       <Divider></Divider>
-
       <Menu
         id="menu-appbar"
         anchorEl={anchorEl}
@@ -116,13 +111,11 @@ export const NavBar = () => {
         <MenuItem onClick={() => history.push('/profile')}>My Profile</MenuItem>
         <MenuItem onClick={handleClose}>Edit Profile</MenuItem>
       </Menu>
-
       <SearchField />
       <Divider></Divider>
       <Button onClick={() => history.push('newsfeed')} color="inherit">
         News Feed
       </Button>
-
       <Divider></Divider>
       <Button onClick={() => history.push('sign-in')} color="inherit">
         Log Out
@@ -140,12 +133,18 @@ export const NavBar = () => {
           <Typography variant="h6" className={classes.title}>
             Social Media
           </Typography>
-          {isAuth ? <SearchField /> : ''}
+          {isAuth ? (
+            <Hidden mdDown>
+              <SearchField />
+            </Hidden>
+          ) : (
+            ''
+          )}
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
             <Grid alignItems="center">
               {isAuth ? (
-                <div>
+                <>
                   <IconButton
                     aria-label="account of current user"
                     aria-controls="menu-appbar"
@@ -187,7 +186,7 @@ export const NavBar = () => {
                   >
                     Log Out
                   </Button>
-                </div>
+                </>
               ) : (
                 <>
                   <Button

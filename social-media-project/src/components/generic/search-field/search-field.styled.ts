@@ -19,8 +19,12 @@ export const useStyles = makeStyles((theme: Theme) =>
       marginRight: theme.spacing(2),
       marginLeft: 0,
       width: '100%',
-      [theme.breakpoints.up('sm')]: {
+      [theme.breakpoints.up('xs')]: {
         marginLeft: theme.spacing(3),
+        width: 'auto',
+      },
+      [theme.breakpoints.down('md')]: {
+        marginLeft: 0,
         width: 'auto',
       },
     },
